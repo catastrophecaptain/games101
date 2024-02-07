@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.28)
+add_subdirectory(try)
+add_subdirectory(work0)
+add_subdirectory(work1)
+add_subdirectory(work2)
+add_subdirectory(work3)
