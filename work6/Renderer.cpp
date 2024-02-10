@@ -28,6 +28,8 @@ void Renderer::Render(const Scene& scene)
             float x = (2 * (i + 0.5) / (float)scene.width - 1) *
                       imageAspectRatio * scale;
             float y = (1 - 2 * (j + 0.5) / (float)scene.height) * scale;
+            Vector3f dir = normalize(Vector3f(x, y, -1));
+            framebuffer[m++] = scene.castRay(Ray(eye_pos, dir), 0);
             // TODO: Find the x and y positions of the current pixel to get the
             // direction
             //  vector that passes through it.
