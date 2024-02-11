@@ -9,7 +9,7 @@
 
 - 叉乘
   - 令$A={x,y,z}$,则矩阵表示为
-    $A\times B=\left( \begin{array}{abc} 0 & -z & y \\ z & 0 & -x \\ -y & x & 0\end{array}  \right)B$
+    $A\times B=\left( \begin{array}{ccc} 0 & -z & y \\ z & 0 & -x \\ -y & x & 0\end{array}  \right)B$
   - 应用：判断向量的左右关系，判断点和三角形的内外关系6。
 
 - 齐次坐标
@@ -17,13 +17,13 @@
   - 点：$(x,y,1)^T=(\omega x,\omega y,\omega )(\omega \neq 0)$
   	向量：$(x,y,0)^T$
   - 仿射变换：
-  	$$ \left( \begin{array}{a} x'\\ y' \\1  \end{array} \right) = \left( \begin{array}{aaa} a &b&t_X\\c&d&t_y\\0&0&1 \end{array} \right)\left( \begin{array}a x\\y\\1\end{array} \right)\\ \left( \begin{array}{a} x'\\ y'  \end{array} \right)= \left( \begin{array}{aa} a &b\\c&d \end{array} \right)\left( \begin{array}{a} x\\ y  \end{array} \right) + \left( \begin{array}{a} t_x\\ t_y  \end{array} \right)$$​
+  	$$ \left( \begin{array}{c} x'\\ y' \\1  \end{array} \right) = \left( \begin{array}{ccc} a &b&t_X\\c&d&t_y\\0&0&1 \end{array} \right)\left( \begin{array}c x\\y\\1\end{array} \right)\\ \left( \begin{array}{c} x'\\ y'  \end{array} \right)= \left( \begin{array}{cc} a &b\\c&d \end{array} \right)\left( \begin{array}{c} x\\ y  \end{array} \right) + \left( \begin{array}{c} t_x\\ t_y  \end{array} \right)$$​
   	先变换再平移
 
 - 3维空间
   - 齐次坐标：比二维多一个维度，四维表示
   - 旋转(非齐次坐标)
-  	$$\boldsymbol{R}(\boldsymbol{n},\alpha)=\cos\alpha\cdot \boldsymbol{I}+(1-\cos\alpha )\cdot \boldsymbol{n}\boldsymbol{n}^T+\sin\alpha \cdot \left( \begin{array}{abc} 0 & -n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0\end{array}  \right)$$
+  	$$\boldsymbol{R}(\boldsymbol{n},\alpha)=\cos\alpha\cdot \boldsymbol{I}+(1-\cos\alpha )\cdot \boldsymbol{n}\boldsymbol{n}^T+\sin\alpha \cdot \left( \begin{array}{ccc} 0 & -n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0\end{array}  \right)$$
 - 观测变换
   - 相机
     - 参数
@@ -34,13 +34,13 @@
   - 模型视图变换
     - 固定相机位置，让景物移动,保持相对位移不变："The origin, up at Y, look at -Z"
     - 变换矩阵$M_{view}=R_{view}T_{view}$
-    - $$T_{view}=\left( \begin{array}{aaaa}  1&0&0&x_{-\overrightarrow{e}} \\0&1&0&y_{-\overrightarrow{e}} \\0&0&1&z_{-\overrightarrow{e}}\\0&0&0&1\end{array}  \right)$$
-    - $$R_{view}^{-1}=\left( \begin{array}{aaaa}  x_{\hat{g}\times \hat{t}}&x_{\hat{t}}&x_{-\hat{g}}&0\\y_{\hat{g}\times \hat{t}}&y_{\hat{t}}&y_{-\hat{g}}&0 \\z_{\hat{g}\times \hat{t}}&z_{\hat{t}}&z_{-\hat{g}}&0\\0&0&0&1\end{array}  \right)$$
+    - $$T_{view}=\left( \begin{array}{cccc}  1&0&0&x_{-\overrightarrow{e}} \\0&1&0&y_{-\overrightarrow{e}} \\0&0&1&z_{-\overrightarrow{e}}\\0&0&0&1\end{array}  \right)$$
+    - $$R_{view}^{-1}=\left( \begin{array}{cccc}  x_{\hat{g}\times \hat{t}}&x_{\hat{t}}&x_{-\hat{g}}&0\\y_{\hat{g}\times \hat{t}}&y_{\hat{t}}&y_{-\hat{g}}&0 \\z_{\hat{g}\times \hat{t}}&z_{\hat{t}}&z_{-\hat{g}}&0\\0&0&0&1\end{array}  \right)$$
       	因为$R_{view}$为正交矩阵，$R_{view}=(R_{view}^{-1})^T$
   - 投影变换
     - 正交投影
       ![](./assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-01-25%20110304.png)
-      $$M_{ortho}=\left( \begin{array}{aaaa} \frac{2}{r-l}&0&0&0\\0&\frac{2}{t-b}&0&0\\0&0&\frac{2}{n-f}&0\\0&0&0&1 \end{array}  \right)\left( \begin{array}{aaaa} 1&0&0&-\frac{r+l}{2}\\0&1&0&-\frac{t+b}{2}\\0&0&1&-\frac{n+f}{2}\\0&0&0&1 \end{array}  \right)$$
+      $$M_{ortho}=\left( \begin{array}{cccc} \frac{2}{r-l}&0&0&0\\0&\frac{2}{t-b}&0&0\\0&0&\frac{2}{n-f}&0\\0&0&0&1 \end{array}  \right)\left( \begin{array}{cccc} 1&0&0&-\frac{r+l}{2}\\0&1&0&-\frac{t+b}{2}\\0&0&1&-\frac{n+f}{2}\\0&0&0&1 \end{array}  \right)$$
     - 透视投影 
       - 先做透视到正交的变换，再做正交变换：$$M_{persp}=M_{ortho}M_{persp\to ortho}$$
         ![](./assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-01-25%20112259.png)
@@ -53,11 +53,11 @@
           3. 最远面中心点坐标不变
             ![](./assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-01-25%20113647.png)
         - 求解结果：
-          $$M_{persp \to ortho}=\left( \begin{array}{aaaa} n&0&0&0\\0&n&0&0\\0&0&n+f&-nf\\0&0&1&0 \end{array}  \right)$$
+          $$M_{persp \to ortho}=\left( \begin{array}{cccc} n&0&0&0\\0&n&0&0\\0&0&n+f&-nf\\0&0&1&0 \end{array}  \right)$$
       - 可以采用其他的参数：垂直视角$fovY$​和纵横比，变换矩阵可以等量代换后得出
         ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-01-25%20164503.png)
   - 视点变换
-    $$M_{viewport}=\left( \begin{array}{aaaa} \frac{width}{2}&0&0&\frac{width}{2}\\0&\frac{height}{2}&0&\frac{height}{2}\\0&0&1&0\\0&0&0&1 \end{array}  \right)$$
+    $$M_{viewport}=\left( \begin{array}{cccc} \frac{width}{2}&0&0&\frac{width}{2}\\0&\frac{height}{2}&0&\frac{height}{2}\\0&0&1&0\\0&0&0&1 \end{array}  \right)$$
   - 成像过程
     - 模型变换（放置物体）M
     - 视角变换（放置相机）V
@@ -276,6 +276,81 @@
     2. 以相机为视点成像,将投影的点转换到光源空间计算出深度与原有深度进行对比,若不一致,则为阴影点
     ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20165933.png)
   - 问题:
-    1. 只能产生硬阴影(点光源成像)
+    1. 只能产生硬阴影(点光源成像),无法处理模糊表面和间接光照
     2. 成像质量取决于阴影map的分辨率
     3. 深度为浮点数,浮点数难以判读是否一致
+- Whitted-style光线追踪
+  - 思路:光路可逆,每个像素发出感知光线,不断反射折射直到找到光源.
+  - 光线方程:(o为原点,d为归一化的光线方向向量,t为长度)
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20131353.png)
+  - 光线与隐式平面相交：联立方程组即可
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20131612.png)
+  - 光线与三角形相交
+    - 先求出光线与三角形所在平面交点,再判断交点是否在三角形内部.
+      令$p'$​为平面上一已知点,$N$​为平面法向量
+      ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20131954.png)
+    - 直接计算上述交点的重心坐标,检查$b_1,b_2,1-b_1-b_2,t$​是否均为非负
+      ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20132218.png)
+    - 逐个判断三角形是否相交过于耗时,引入以包围盒算法为基础的判别算法
+  - 包围盒算法
+    - 包围盒:包围盒是由六个与坐标平面平行的平面夹出的.
+    - 思路:计算出光线进出一对平行平面的时间,光线进入包围盒的时间为三个进入时间最大值,光线驶出包围盒时间为三个驶出时间最小值,$t_{entetr}=max\{t_{min}\}\quad t_{exit}=min\{t_{max}\}$​
+      ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20154732.png)
+      检查$t_{enter}<t_{exit}$且$t_{exit}\ge 0$
+  - 平均空间划分
+    1. 选取合适的间隔将空间网格化
+    2. 储存物体在与之重叠的网格
+    3. 生成光线,判断下一步经过的网格,将光线与网格内物体求交
+    4. 不断重复3步直到打到物体或光源或者超出边界
+    适用于物体在空间分布和自身大小都均匀的情况,不适用于过于空旷的场景,且判断物体与那些网格重合也难以实现
+  - KD-Tree空间划分
+    1. 轮流在x,y,z方向上切割网格生成树,直至继续切分产生空网格,物体均储存在叶子节点
+    2. 光线按照相交关系遍历该树
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20180150.png)
+  - 层次包围盒
+    1. 对物体按照空间关系不断细分出包围盒建立包围盒层次二叉树(较好做法是沿长边切割,取物体重心排序,取中位数物体作为分界)
+      ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20180531.png)
+    2. 按照相交关系遍历该树
+      ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20180631.png) 
+- 辐射度量学
+  - Radiant Energy 辐射能量$Q[]J=Joule$
+  - Radiant Flux 辐射功率$\Phi=\frac{dQ}{dt} [W=Watt]$$[lm=lumen]$(下面的能量均指功率)
+  - Radiant Intensity辐射密度
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20181225.png)
+    单位立体角上发出的能量
+  - irradiance辐照度
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20181329.png)
+    单位面积接受的能量或是在传播方向上单位面积发射的能量
+  - Radiance辐射(用于表示光线)
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20181651.png)
+    在传播方向上单位面积发射或接受的能量,可以证明在一道光线上发出的$L$等于接受的$L$.
+  - Bidirectional Reflectance Distribution Function双向反射分布函数,即沿某方向入射的分配到某方向出射的光线强度.
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20185714.png)
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20185728.png)
+  - 渲染方程
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-10%20185825.png)
+- 路径追踪
+  - 蒙特卡洛积分
+    $$\int{f(x)}=\int {\frac{f(x)}{p(x)}p(x)dx}=E(\frac{f(x)}{p(x)})\approx \frac{\sum{\frac{f(x)}{p(x)}} }{N}$$
+  - 俄罗斯轮盘赌
+    $E(x)=E(p\cdot \frac{x}{p}+(1-p)\cdot 0)$
+  - 原始路径追踪
+    用蒙特卡洛积分估计渲染方程的积分结果
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20145720.png)
+    以下为改进
+  1. 避免树形递归导致计算量过大
+    设置原始路劲追踪的$N$​为1,采用在观察点发射多条光线降低噪声
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20150112.png)
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20150119.png)
+  2. 避免无穷递归
+    采用俄罗斯轮盘赌的方式,每次反射有$(1-p)$​的概率停止递归
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20150733.png)
+  3. 光源采样化简
+    直接对光源采样,避免光线浪费(直接光照为主导因素)
+    $\parallel x'-x\parallel^2 d\omega=dA\cdot \cos{\theta'}\Rightarrow d\omega = \frac{\cos{\theta'}}{\parallel x'-x\parallel^2}dA$​​
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20152952.png)
+    分别处理直接光照和间接光照
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20153305.png)
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20153319.png)
+    还需考虑光源与物体间是否有障碍物
+    ![](assets/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-11%20153334.png)
